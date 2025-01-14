@@ -1,9 +1,12 @@
+import Home from "./pages/Home/Home";
+import Footer from "./components/Footer/Footer";
+
 function App() {
   return (
-    <div className="App">
-      <h2>Welcome to Picshare frontend</h2>
-      <p>the app is in development!</p>
-    </div>
+    <>
+      <Home/>
+      <Footer />
+    </>  
   );
 }
 

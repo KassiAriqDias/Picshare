@@ -1,6 +1,21 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color:white
+}
+
+
+body{
+    background-color: #222;
+}
+
 .App{
     width: 50%;
     margin: auto;
     padding: 50px;
     text-align: center;
 }
+
+
+
