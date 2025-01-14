@@ -1,0 +1,28 @@
+.footer{
+    background-color: black;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.contact{
+    display: flex;
+    justify-content: center;
+}
+.contact-actions{
+    font-size: 1.3em;
+    margin: 10px;
+}
+
+.footer-copyright{
+    font-size: 0.8em;
+}
+
+@media only screen and (max-width: 500px){
+
+    .footer{
+        margin: 0;
+        padding-bottom: 30px;
+    }
+
+}
