@@ -7,7 +7,7 @@ const Header = () => {
         <p className='logo'>Picshare</p>
         <ul>
             <li>
-                <div>Account</div>
+                <a href='/registration/'>Account</a>
             </li>
         </ul>
     </header>
