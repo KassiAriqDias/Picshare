@@ -6,8 +6,8 @@ const Footer = () => {
     <div className='footer'>
       <ul className='creators-list'>
         <p>Kassiyet Bolat</p>
-        <p>Dias </p>
-        <p>Ariq</p>
+        <p>Dias Kami</p>
+        <p>Muanmmar Tajwar Ariq</p>
         <p><strong>Group: IT-2307</strong></p>
       </ul>
       <div className='contact'>

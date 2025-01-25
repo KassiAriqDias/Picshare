@@ -1,0 +1,35 @@
+.admin-login-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.admin-login-box form{
+    text-align: center;
+    min-width: 390px;
+}
+
+.admin-login-box form div{
+    height: 50px;
+    background-color: #555;
+    margin: 20px;
+}
+
+
+
+.admin-login-box form input{
+    width: 300px;
+    font-size: 1.5em;
+    height: 100%;
+    background-color: #555;
+    border: none;
+    padding: 10px;
+}
+
+
+.admin-login-box form label{
+    font-size: 1.5em;
+    margin-right: 10px;
+    margin-left: 10px;
+}
