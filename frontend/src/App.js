@@ -1,12 +1,17 @@
 import Home from "./pages/Home/Home";
-import Footer from "./components/Footer/Footer";
+import Registeration from "./pages/Registration/Registration";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin/Admin"
 
 function App() {
   return (
-    <>
-      <Home/>
-      <Footer />
-    </>  
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/registration/*" element={<Registeration/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
