@@ -1,3 +1,10 @@
+.admin-page{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .admin-login-box{
     display: flex;
     flex-direction: column;
@@ -5,20 +12,18 @@
     margin-top: 50px;
 }
 
-.admin-login-box form{
+form{
     text-align: center;
     min-width: 390px;
 }
 
-.admin-login-box form div{
+form div{
     height: 50px;
     background-color: #555;
     margin: 20px;
 }
 
-
-
-.admin-login-box form input{
+form input{
     width: 300px;
     font-size: 1.5em;
     height: 100%;
@@ -28,8 +33,100 @@
 }
 
 
-.admin-login-box form label{
+form label{
     font-size: 1.5em;
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.page-title{
+    width: 200px;
+    margin: auto;
+}
+
+.admin-info{
+    width: 100%;
+    display: flex;
+    align-items:end;
+}
+
+.pfp{
+    width: 2em;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+.admin-username{
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.workspace{
+    background-color: #666;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+.workspace h2{
+    margin-bottom: 10px;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    
+}
+
+.row div{
+    border: 1px solid #999;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.id{
+    flex: 1;
+}
+
+.username{
+    flex:2;
+    
+}
+
+.action{
+    flex: 3;
+}
+.action-btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.action-edit{
+    background-color: rgb(188, 134, 33);
+}
+
+.action-delete{
+    background-color: rgb(188, 33, 33);
+}
+
+
+
+.create-user{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
