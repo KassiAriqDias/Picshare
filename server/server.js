@@ -28,3 +28,11 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+// Routes for user-related operations
+const userRoutes = require('./routes/userRoutes');
+app.use('/users', userRoutes);
+
+// Admin routes
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin', adminRoutes);
