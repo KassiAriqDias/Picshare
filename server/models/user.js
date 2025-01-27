@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     updatedAt: { type: Date },
     deletedAt: { type: Date },
     isAdmin: { type: Boolean, default: false },
+    profilePicture: { type: String, required: true },
 });
 
 module.exports = mongoose.model('User', userSchema);
