@@ -5,7 +5,7 @@ const Login = (props) => {
     return (
       <>
         <h2>LOGIN</h2>
-        <form>
+        <form onSubmit={props.onSubmit}>
           <div>
             <label htmlFor="username">
               <i className="bx bxs-user"></i>
@@ -24,12 +24,13 @@ const Login = (props) => {
             </label>
             <input
               type="password"
-              name="password"
+              name="password" 
               id="password"
               placeholder="Password"
               required
             />
           </div>
+          <p className='error-message' style={{color:props.messageColor}} >{props.message}</p>
           <input className="submit-btn" type="submit" value="Login" />
         </form>
         <a href="./signup">Don't have an account?</a>

@@ -11,9 +11,9 @@ const Footer = () => {
         <p><strong>Group: IT-2307</strong></p>
       </ul>
       <div className='contact'>
-          <i class='contact-actions bx bxl-instagram-alt' ></i>
-          <i class='contact-actions bx bxl-facebook-circle' ></i>
-          <i class='contact-actions bx bxl-gmail'></i>
+          <i className='contact-actions bx bxl-instagram-alt' ></i>
+          <i className='contact-actions bx bxl-facebook-circle' ></i>
+          <i className='contact-actions bx bxl-gmail'></i>
       </div>
       <p className='footer-copyright'>© 2025 Copyright: KassiAriqDias. All Rights Reserved</p>
     </div>

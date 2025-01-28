@@ -15,7 +15,7 @@
 .register-box form div{
     height: 50px;
     background-color: #555;
-    margin: 20px;
+    margin: 25px;
 }
 
 .register-box form input{
@@ -41,3 +41,7 @@
     margin: 10px;
 }
 
+.generate-username-btn{
+    margin: 0 !important;
+    display: block;
+}

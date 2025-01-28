@@ -1,12 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require('cors');
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 // Log HTTP requests
 app.use(morgan("dev"));
+app.use(cors());
 
 // MongoDB Atlas connection
 const mongo_url = `mongodb+srv://Kassiyet:x8mWdUpxZoBOCdta@kassiyet.c2egr.mongodb.net/?retryWrites=true&w=majority&appName=Kassiyet`;
