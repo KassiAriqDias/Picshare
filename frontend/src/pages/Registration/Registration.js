@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import './Registration.css'
 import Login from '../../components/Login/Login'
@@ -10,10 +10,11 @@ import serverUrl from '../../serverUrl.json'
 function Registeration() {
   const navigate = useNavigate();
 
-  const [registerUserData, setRegisterUserData] = useState({
+  const [userData, setUserData] = useState({
     username: "",
     password: ""
   });
+
   const [generatedUsername, setGenetatedUsername] = useState("");
 
   const [responseMessage, setResponseMessage] = useState("");
@@ -38,84 +39,52 @@ function Registeration() {
     });
   }
 
-  const handleSignUp = () =>{
-    fetch(`${serverUrl.url}/users/register`, {
+  const handleApiRequest = (endpoint, data) => {
+    return fetch(`${serverUrl.url}/users/${endpoint}`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(registerUserData)
+      body: JSON.stringify(data)
     })
-    .then(response => {
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(data => { throw new Error(data.error); });
+        }
+        return response.json();
+      });
+  };
 
-      if (!response.ok) {
-      
-        return response.json().then(data => {
-          throw new Error(data.error);
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      setResponseMessage(data.message);
-      setMessageColor("green");
-      setTimeout(() => navigate("/"), 2000);
-    })
-    .catch(error => {
-      setMessageColor("red");
-      setResponseMessage(error.message);
-    });
-  }
-
-  const  handleLogin = () => {
-    fetch(`${serverUrl.url}/users/register`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(registerUserData)
-    })
-    .then(response => {
-
-      if (!response.ok) {
-      
-        return response.json().then(data => {
-          throw new Error(data.error);
-        });
-      }
-      return response.json();
-    })
-    .then(data => {
-      setResponseMessage(data.message);
-      setMessageColor("green");
-      setInterval(() => console.log("redirected"), 2000);
-    })
-    .catch(error => {
-      setMessageColor("red");
-      setResponseMessage(error.message);
-    });
-  }
-
-  useEffect(() => {
-    if(registerUserData.username !== "" && registerUserData.password !== ""){
-      handleSignUp();
-    }
-
-  }, [registerUserData]);
-
-  const onSignUp = event => {
+  const handleSubmit = (event, endpoint) => {
     event.preventDefault();
     const { username, password } = event.target.elements;
-    const updatedData = {
+
+    const userData = {
       username: username.value,
       password: password.value
     };
-    setRegisterUserData(prev => {
-      return {
-        ...prev,
-        ...updatedData
+    setUserData(userData);
+
+    handleApiRequest(endpoint, userData)
+    .then(data => {
+      setResponseMessage(data.message);
+      setMessageColor("green");
+      if (endpoint === 'login') {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setTimeout(() => window.location.href = "/", 2000);
+      } else {
+        
+        setTimeout(() => {
+          window.location.href = "/registration/login";
+        }, 2000);
       }
+    })
+    .catch(error => {
+      setMessageColor("red");
+      setResponseMessage(error.message);
     });
+    
   }
 
   const handleUsernameChange = (event) => {
@@ -130,10 +99,16 @@ function Registeration() {
       <div className='register-box'>
         <Routes>
           <Route path='/' element={<Navigate to="login" />} />
-          <Route path='login' element={<Login  />} />
+          <Route path='login' element={
+            <Login
+              onSubmit={(e) => handleSubmit(e, 'login')}
+              message={responseMessage} 
+              messageColor={messageColor}
+            />
+          } />
           <Route path='signup' element={
             <Signup 
-              onSubmit={onSignUp} 
+              onSubmit={(e) => handleSubmit(e, 'register')}
               message={responseMessage} 
               messageColor={messageColor} 
               onGenerate={generateUsername}
