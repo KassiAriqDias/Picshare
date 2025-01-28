@@ -54,11 +54,11 @@ const Admin = () => {
             <h3>create user</h3>
             <form>
               <div>
-              <label for="username"><i class='bx bxs-user' ></i></label>
+              <label for="username"><i className='bx bxs-user' ></i></label>
               <input type='text' name="username" id="username" placeholder='Username' required  minLength={8}/><br/>
               </div>
               <div>
-                <label for="password"><i class='bx bxs-lock' ></i></label>
+                <label for="password"><i className='bx bxs-lock' ></i></label>
                 <input type='password' name="password" id="password" placeholder='Password' required minLength={8} /><br/>
               </div>
               

@@ -13,7 +13,7 @@ const Post = (promp) => {
           </div>
 
           <div className='post-box-right'>
-            <i class='post-actions bx bx-dots-vertical-rounded'></i>
+            <i className='post-actions bx bx-dots-vertical-rounded'></i>
           </div>
 
           
@@ -23,12 +23,12 @@ const Post = (promp) => {
         </div>
         <div className='post-footer'>
           <div className='post-box-left'>
-            <i class='post-actions bx bx-heart' ></i>
-            <i class='post-actions bx bx-message-rounded-dots'></i>
-            <i class='post-actions bx bx-send' ></i>
+            <i className='post-actions bx bx-heart' ></i>
+            <i className='post-actions bx bx-message-rounded-dots'></i>
+            <i className='post-actions bx bx-send' ></i>
           </div>
           <div className='post-box-right'>
-            <i class='post-actions bx bx-bookmark'></i>
+            <i className='post-actions bx bx-bookmark'></i>
           </div>
         </div>
     </div>
