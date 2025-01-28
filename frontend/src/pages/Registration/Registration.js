@@ -65,12 +65,12 @@ function Registeration() {
       if (endpoint === 'login') {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("user", JSON.stringify(data.user));
-        setTimeout(() => window.location.href = "/", 2000);
+        setTimeout(() => window.location.href = "/", 1000);
       } else {
         
         setTimeout(() => {
           window.location.href = "/registration/login";
-        }, 2000);
+        }, 1000);
       }
     })
     .catch(error => {
