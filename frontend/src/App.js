@@ -1,13 +1,11 @@
 import Home from "./pages/Home/Home";
 import Registeration from "./pages/Registration/Registration";
+import Profile from "./pages/Profile/Profile";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Admin from "./pages/Admin/Admin"
-import { useEffect, useState } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLogedIn] = useState(() => {
-    return JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-  })
+  const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
 
   return (
     <BrowserRouter>
@@ -15,6 +13,7 @@ function App() {
         <Route path="/" element={isLoggedIn ? <Home/> : <Navigate to="/registration/login" /> } />
         <Route path="/admin" element={<Admin />} />
         <Route path="/registration/*" element={isLoggedIn ? <Navigate to="/" /> : <Registeration/>} />
+        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/registration/login" />} />
       </Routes>
     </BrowserRouter>
   );

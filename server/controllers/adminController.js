@@ -16,10 +16,10 @@ exports.addUser = async (req, res) => {
 exports.editUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const { username, password, isAdmin } = req.body;
+        const { username, password, profilePicture, isAdmin } = req.body;
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { username, password, isAdmin, updatedAt: new Date() },
+            { username, password, profilePicture, isAdmin, updatedAt: new Date() },
             { new: true }
         );
         if (!updatedUser) {

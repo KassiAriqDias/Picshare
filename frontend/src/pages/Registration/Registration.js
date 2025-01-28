@@ -1,6 +1,6 @@
 import React from 'react'
-import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom"
-import { useState, useEffect } from 'react'
+import { Routes, Route, Navigate} from "react-router-dom"
+import { useState } from 'react'
 import './Registration.css'
 import Login from '../../components/Login/Login'
 import Signup from '../../components/Signup/Signup'
@@ -8,12 +8,6 @@ import serverUrl from '../../serverUrl.json'
 
 
 function Registeration() {
-  const navigate = useNavigate();
-
-  const [userData, setUserData] = useState({
-    username: "",
-    password: ""
-  });
 
   const [generatedUsername, setGenetatedUsername] = useState("");
 
@@ -63,7 +57,6 @@ function Registeration() {
       username: username.value,
       password: password.value
     };
-    setUserData(userData);
 
     handleApiRequest(endpoint, userData)
     .then(data => {
