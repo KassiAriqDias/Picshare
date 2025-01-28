@@ -93,7 +93,7 @@ form label{
 }
 
 .id{
-    flex: 1;
+    flex: 3;
 }
 
 .username{
@@ -102,7 +102,7 @@ form label{
 }
 
 .action{
-    flex: 3;
+    flex: 2;
 }
 .action-btn{
     margin-left: 10px;
