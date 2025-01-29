@@ -20,36 +20,41 @@ PicShare is a modern social media application inspired by Instagram. It empowers
   - Developed with **Node.js** and **Express**.
   - RESTful API architecture to handle user data and application logic.
 
-📦 main
+## 📂 Folder Structure
 
-├── 📂 frontend                # Frontend (React)
-│   ├── 📂 node_modules        # Dependencies
-│   ├── 📂 public              # Static assets
+```
+📦 project-name
+├── 📂 frontend
+│   ├── 📂 node_modules
+│   ├── 📂 public
 │   │   ├── favicon.ico
 │   │   ├── index.html
 │   │   ├── logo192.png
 │   │   ├── logo512.png
 │   │   ├── manifest.json
 │   │   ├── robots.txt
-│   ├── 📂 src                 # Source code
+│   ├── 📂 src
 │   ├── .gitignore
 │   ├── package.json
 │   ├── package-lock.json
-├── 📂 server                  # Backend (Node.js & Express)
-│   ├── 📂 controllers         # API controllers
+├── 📂 server
+│   ├── 📂 controllers
 │   │   ├── adminController.js
 │   │   ├── userController.js
-│   ├── 📂 models              # Database models
+│   ├── 📂 models
 │   │   ├── history.js
 │   │   ├── user.js
-│   ├── 📂 routes              # API routes
+│   ├── 📂 routes
 │   │   ├── adminRoutes.js
 │   │   ├── userRoutes.js
 │   ├── .gitignore
 │   ├── package.json
 │   ├── package-lock.json
-│   ├── server.js              # Main server file
-├── README.md                  # Project documentation
+│   ├── server.js
+├── README.md
+```
+
+
 
 
 ### 📁 Frontend
