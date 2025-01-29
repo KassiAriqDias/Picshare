@@ -124,7 +124,7 @@ Ensure the following tools are installed:
    Open your browser and navigate to `http://localhost:3000`.
 
 
-**You can access the live version of the project here:**
+## You can access the live version of the project here:
 
 [**Project Link**](https://picshare-20h0.onrender.com)
 
