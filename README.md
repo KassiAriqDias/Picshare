@@ -134,12 +134,12 @@ Ensure the following tools are installed:
 [**Server Side Link**](https://picshare-server.onrender.com)
 
 
-**User Login**
+**Admin Page Login**
 
-Username: Dias
+**Username:** Dias
 
 
-Password: 12345678
+**Password:** 12345678
 
 
 
