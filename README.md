@@ -151,9 +151,7 @@ Ensure the following tools are installed:
 - Enhance the admin dashboard with advanced analytics.
 - Optimize performance and scalability.
 
-## 📜 License
 
-This project is licensed under the **MIT License**.
 
 ---
 Feel free to contribute or raise issues in the repository!
