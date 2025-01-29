@@ -122,7 +122,7 @@ Ensure the following tools are installed:
 
 4. **Access the Application**
    Open your browser and navigate to `http://localhost:3000`.
-   Server Location `http://localhost:3001`
+   Server Location `http://localhost:3001`.
 
 
 ## You can access the live version of the project here:
