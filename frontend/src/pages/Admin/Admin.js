@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+import React from 'react'
 import "./Admin.css"
 import { useState, useEffect } from 'react'
 import serverUrl from '../../serverUrl.json'
@@ -114,14 +114,12 @@ const Admin = () => {
   const editUser = event => {
     event.preventDefault();
     const { username, password, isAdmin } = event.target.elements;
-
     const updatedUser = {
       ...userToEdit,
       username: username.value,
       password: password.value,
-      isAdmin: isAdmin.value
+      isAdmin: isAdmin.checked
     };
-    console.log(updatedUser)
     fetch(`${serverUrl.url}/admin/edit/${userToEdit._id}`, {
       method: "PUT", 
       headers: {
@@ -165,7 +163,7 @@ const Admin = () => {
         <div className='workspace'>
           <h2>Worksapce</h2>
           {usersList.map( user => {
-              return (<div className='row' key={user._id} style={user.isAdmin ? {'background-color': 'green'} : {}}>
+              return (<div className='row' key={user._id} style={user.isAdmin ? {backgroundColor: 'green'} : {}}>
                 <div className='id'>
                   <p>{user._id}</p>
                 </div>
@@ -178,7 +176,7 @@ const Admin = () => {
                 </div>
               </div>)
           })}
-          <div style={{display:'flex', margin: "10px", width:'100%'}}><div style={{width: '20px', height: '20px', 'background-color':'green', 'margin-right':'10px'}}></div>- admin</div>
+          <div style={{display:'flex', margin: "10px", width:'100%'}}><div style={{width: '20px', height: '20px', backgroundColor:'green', marginRight:'10px'}}></div>- admin</div>
 
           {userToEdit && (<div className='edit-user'>
             <h3>edit user</h3>
@@ -194,7 +192,7 @@ const Admin = () => {
                 <label htmlFor="password-edit"><i className='bx bxs-lock' ></i></label>
                 <input type='password' name="password" id="password-edit" placeholder='Password' required /><br/>
               </div>
-              <input id='isAdmin' type='checkbox' name="isAdmin" value="true" /><label for="isAdmin"> admin </label><br/>
+              <input id='isAdmin' type='checkbox' name="isAdmin" value="true" /><label htmlFor="isAdmin"> admin </label><br/>
               
               <input className="submit-btn" type='submit' value="Edit" />
             </form>
