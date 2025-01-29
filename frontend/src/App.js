@@ -1,12 +1,21 @@
 import Home from "./pages/Home/Home";
-import Footer from "./components/Footer/Footer";
+import Registeration from "./pages/Registration/Registration";
+import Profile from "./pages/Profile/Profile";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Admin from "./pages/Admin/Admin"
 
 function App() {
+  const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+
   return (
-    <>
-      <Home/>
-      <Footer />
-    </>  
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={isLoggedIn ? <Home/> : <Navigate to="/registration/login" /> } />
+        <Route path="/admin" element={isLoggedIn ? <Admin /> : <Navigate to="/registration/login" />} />
+        <Route path="/registration/*" element={isLoggedIn ? <Navigate to="/" /> : <Registeration/>} />
+        <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/registration/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

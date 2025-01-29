@@ -1,0 +1,142 @@
+.admin-page{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-login-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+form{
+    text-align: center;
+    min-width: 390px;
+}
+
+form div{
+    height: 50px;
+    background-color: #555;
+    margin: 20px;
+}
+
+form input{
+    width: 300px;
+    font-size: 1.5em;
+    height: 100%;
+    background-color: #555;
+    border: none;
+    padding: 10px;
+}
+
+
+form label{
+    font-size: 1.5em;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.page-title{
+    width: 200px;
+    margin: auto;
+}
+
+.admin-info{
+    width: 100%;
+    display: flex;
+    align-items:end;
+}
+
+.pfp{
+    width: 2em;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+.admin-username{
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.workspace{
+    background-color: #666;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    
+}
+
+.workspace h2{
+    margin-bottom: 10px;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    
+}
+
+.row div{
+    border: 1px solid #999;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.id{
+    flex: 3;
+}
+
+.username{
+    flex:2;
+    
+}
+
+.action{
+    flex: 2;
+}
+.action-btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.action-edit{
+    background-color: rgb(188, 134, 33);
+}
+
+.action-delete{
+    background-color: rgb(188, 33, 33);
+}
+
+
+
+.create-user, .edit-user{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit-user #isAdmin{
+    width: auto !important;
+    margin-bottom: 20px;
+}
+
+.edit-user h3{
+    margin-bottom: 10px;
+}
+
+

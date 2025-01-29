@@ -18,6 +18,13 @@
     font-size: 0.8em;
 }
 
+.creators-list{
+    font-size: 0.8em;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
 @media only screen and (max-width: 500px){
 
     .footer{
