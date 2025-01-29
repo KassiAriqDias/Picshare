@@ -20,28 +20,37 @@ PicShare is a modern social media application inspired by Instagram. It empowers
   - Developed with **Node.js** and **Express**.
   - RESTful API architecture to handle user data and application logic.
 
-## 📂 Folder Structure
+📦 main
 
-```plaintext
-PicShareDesktop/
-├── frontend/
-│   ├── node_modules/
-│   ├── public/
-│   ├── src/
+├── 📂 frontend                # Frontend (React)
+│   ├── 📂 node_modules        # Dependencies
+│   ├── 📂 public              # Static assets
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   ├── 📂 src                 # Source code
 │   ├── .gitignore
-│   ├── package-lock.json
-│   └── package.json
-├── server/
-│   ├── controllers/
-│   ├── models/
-│   ├── node_modules/
-│   ├── routes/
-│   ├── .gitignore
-│   ├── package-lock.json
 │   ├── package.json
-│   └── server.js
-└── README.md
-```
+│   ├── package-lock.json
+├── 📂 server                  # Backend (Node.js & Express)
+│   ├── 📂 controllers         # API controllers
+│   │   ├── adminController.js
+│   │   ├── userController.js
+│   ├── 📂 models              # Database models
+│   │   ├── history.js
+│   │   ├── user.js
+│   ├── 📂 routes              # API routes
+│   │   ├── adminRoutes.js
+│   │   ├── userRoutes.js
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── server.js              # Main server file
+├── README.md                  # Project documentation
+
 
 ### 📁 Frontend
 - **`src/`**: Contains React components and logic for UI.
