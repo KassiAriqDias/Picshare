@@ -19,7 +19,7 @@ const Header = props => {
         <p className='logo'>Picshare</p>
         <ul>
             <li>
-                {path === "home" && <a href='/profile'>Account</a>}
+                {path === "home" && <div><a href='/#/profile'>Account</a><a href='/#/admin'>Admin</a></div>}
                 {path === "profile" && <div><a href='/'>Home</a><a href='/' onClick={onLogout}>Logout</a></div>}
             </li>
         </ul>

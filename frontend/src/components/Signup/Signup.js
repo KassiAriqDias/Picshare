@@ -19,7 +19,7 @@ const Signup = props => {
           
           <input className="submit-btn" type='submit' value="Sign up" />
         </form>
-        <a href='./login'>Already have an account?</a>
+        <a href='/#/registration/login'>Already have an account?</a>
     </>
   )
 }

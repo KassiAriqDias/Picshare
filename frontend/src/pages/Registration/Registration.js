@@ -69,7 +69,7 @@ function Registeration() {
       } else {
         
         setTimeout(() => {
-          window.location.href = "/registration/login";
+          window.location.href = "/#/registration/login";
         }, 1000);
       }
     })
