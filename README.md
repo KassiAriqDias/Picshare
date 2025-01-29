@@ -5,7 +5,7 @@ PicShare is a modern social media application inspired by Instagram. It empowers
 ## 🚀 Features
 
 - **User Registration & Authentication**
-  - Secure user sign-up and login.
+  - User sign-up and login.
   - Admin dashboard to monitor user sign-in history.
 
 - **Used API**
