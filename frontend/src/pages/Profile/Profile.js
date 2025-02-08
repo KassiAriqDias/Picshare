@@ -38,13 +38,6 @@ const Profile = () => {
                     },
                 });
 
-                if (response.status === 401) {
-                    setErrorMessage("Session expired. Please log in again.");
-                    localStorage.removeItem("token");
-                    setTimeout(() => navigate("/login"), 2000);
-                    return;
-                }
-
                 if (!response.ok) {
                     throw new Error("Failed to fetch user info");
                 }
@@ -84,7 +77,6 @@ const Profile = () => {
             ...userInfo,
             profilePicture: pfpUrl
         };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
         fetch(`${serverUrl.url}/admin/edit/${userInfo._id}`, {
             method: "PUT", 
             headers: {
@@ -125,7 +117,6 @@ const Profile = () => {
                 </div>
                 <ul className='user-info-list'>
                     <li>Username: <span>{userInfo.username}</span></li>
-                    <li>Password: <span>{userInfo.password}</span></li>
                     <li>Account created: <span>{userInfo.createdAt.split("T")[0]}</span></li>
                 </ul>
             </div>

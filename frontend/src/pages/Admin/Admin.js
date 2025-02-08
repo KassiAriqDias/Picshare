@@ -4,12 +4,45 @@ import { useState, useEffect } from 'react'
 import serverUrl from '../../serverUrl.json'
 
 const Admin = () => {
-  let isAdmin = JSON.parse(localStorage.getItem("user")).isAdmin;
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState({});
   const [usersList, setUsersList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [messageColor, setMessageColor] = useState("");
   const [userToEdit, setUserToEdit] = useState(null);
+
+  useEffect(()=> {
+    const fetchUserInfo = async setUserInfo => {
+      const token = JSON.parse(localStorage.getItem("token"));
+
+      if (!token) {
+          setErrorMessage("No token found. Please log in.");
+          setTimeout(() => window.location.assign('./#/registeration/login'), 500);
+          return;
+      }
+
+      try {
+          const response = await fetch(`${serverUrl.url}/users/user`, {
+              method: "GET",
+              headers: {
+                  "Authorization": `Bearer ${token}`,
+                  "Content-Type": "application/json",
+              },
+          });
+
+          if (!response.ok) {
+              throw new Error("Failed to fetch user info");
+          }
+
+          const data = await response.json();
+          setUserInfo(data);
+      } catch (err) {
+          setMessageColor("red")
+          setErrorMessage(err.message);
+      }
+  };
+
+  fetchUserInfo(setUser);
+  }, [])
 
   const getUsersList = () => {
     fetch(`${serverUrl.url}/admin/users`)
@@ -151,7 +184,7 @@ const Admin = () => {
 
 
 
-  if(isAdmin){
+  if(user.isAdmin){
     return (
       <div className='admin-page'>
         <h1 className='page-title'>Admin Page</h1>
@@ -181,7 +214,6 @@ const Admin = () => {
           {userToEdit && (<div className='edit-user'>
             <h3>edit user</h3>
             <p>usermame: {userToEdit.username}</p>
-            <p>password: {userToEdit.password}</p>
             <p>admin status: {`${userToEdit.isAdmin}`}</p>
             <form onSubmit={ e => editUser(e)}>
               <div>
