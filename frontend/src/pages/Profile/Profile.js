@@ -1,15 +1,59 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header'
 import serverUrl from '../../serverUrl.json'
 import './Profile.css'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const navigate = useNavigate();
+
+    const [userInfo, setUserInfo] = useState({
+        username: "",
+        password: "",
+        profilePicture: "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=Avery&eyes=variant04&lips=variant24,variant19",
+        createdAt: ""
+    });
 
     const [errorMessage, setErrorMessage] = useState("");
     const [messageColor, setMessageColor] = useState("");
     const [editMode, setEditMode] = useState(false);
-    const [pfpUrl, setPfpUrl] = useState(userInfo.profilePicture);
+    const [pfpUrl, setPfpUrl] = useState("https://api.dicebear.com/9.x/notionists-neutral/svg?seed=Avery&eyes=variant04&lips=variant24,variant19");
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            const token = JSON.parse(localStorage.getItem("token"));
+
+            if (!token) {
+                setErrorMessage("No token found. Please log in.");
+                setTimeout(() => navigate("/login"), 2000);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${serverUrl.url}/users/user`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user info");
+                }
+
+                const data = await response.json();
+                setUserInfo(data);
+                setPfpUrl(data.profilePicture);
+            } catch (err) {
+                setMessageColor("red")
+                setErrorMessage(err.message);
+            }
+        };
+
+        fetchUserInfo();
+    }, [navigate]);
+
 
     const toggleNextPfp = () => {
         fetch(`${serverUrl.url}/users/generate_pfp`)
@@ -29,12 +73,10 @@ const Profile = () => {
         })
     }
     const savePfp = () => {
-        console.log(pfpUrl);
         const updatedUser = {
             ...userInfo,
             profilePicture: pfpUrl
         };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
         fetch(`${serverUrl.url}/admin/edit/${userInfo._id}`, {
             method: "PUT", 
             headers: {
@@ -63,6 +105,7 @@ const Profile = () => {
     
   return (
     <div>
+        {/* {console.log(userInfo)} */}
         <Header />
         <div className='profile-page'>
             <h3>Account Info</h3>
@@ -74,7 +117,6 @@ const Profile = () => {
                 </div>
                 <ul className='user-info-list'>
                     <li>Username: <span>{userInfo.username}</span></li>
-                    <li>Password: <span>{userInfo.password}</span></li>
                     <li>Account created: <span>{userInfo.createdAt.split("T")[0]}</span></li>
                 </ul>
             </div>
@@ -86,9 +128,10 @@ const Profile = () => {
                     <button href='#' onClick={toggleNextPfp}>next</button>
                     <button href='#' onClick={savePfp}>save</button>
                 </div>
+        
                 
-                <p style={{color: messageColor}}>{errorMessage}</p>
             </div>)}  
+            <p style={{color: messageColor}}>{errorMessage}</p>
         </div>
     </div>
   )

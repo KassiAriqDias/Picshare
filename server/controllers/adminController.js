@@ -1,4 +1,16 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+async function hashPassword(password){
+    try{
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        return hashedPassword;
+    } catch (err){
+        console.err(err);
+    }
+}
 
 // Add a new user (Admin only)
 exports.addUser = async (req, res) => {
@@ -17,9 +29,11 @@ exports.editUser = async (req, res) => {
     try {
         const { id } = req.params;
         const { username, password, profilePicture, isAdmin } = req.body;
+        const hashedPassword = await hashPassword(password);
+        console.log({username, hashedPassword, profilePicture, isAdmin});
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { username, password, profilePicture, isAdmin, updatedAt: new Date() },
+            { username, password: hashedPassword, profilePicture, isAdmin, updatedAt: new Date() },
             { new: true }
         );
         if (!updatedUser) {

@@ -7,6 +7,10 @@
     justify-content: center;
 }
 
+a{
+    cursor: pointer;
+}
+
 .register-box a{
     color: #555;
     margin: 10px;
@@ -46,3 +50,4 @@
     margin: 0 !important;
     display: block;
 }
+
