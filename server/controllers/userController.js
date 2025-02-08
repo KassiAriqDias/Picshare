@@ -1,10 +1,35 @@
 const User = require('../models/user');
 const axios = require('axios');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+async function hashPassword(password){
+    try{
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        return hashedPassword;
+    } catch (err){
+        console.err(err);
+    }
+}
+
+async function checkPassword(enteredPassword, storedHashedPassword) {
+    try {
+        const match = await bcrypt.compare(enteredPassword, storedHashedPassword);
+        return match; // Returns true if passwords match, otherwise false
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
 
 // Register User
 exports.registerUser = async (req, res) => {
     try {
         const { username, password } = req.body;
+
+        const hashedPassword = await hashPassword(password);
 
         // Generate a random number for the profile picture seed
         const randomSeed = Math.floor(Math.random() * 1000);
@@ -13,7 +38,7 @@ exports.registerUser = async (req, res) => {
         const profilePictureUrl = `https://api.dicebear.com/9.x/pixel-art/svg?seed=${randomSeed}`;
 
         // Create a new user with the profile picture
-        const user = new User({ username, password, profilePicture: profilePictureUrl });
+        const user = new User({ username, password: hashedPassword, profilePicture: profilePictureUrl });
     
         await user.save();
         res.status(201).json({ message: 'User registered successfully', user });
@@ -26,8 +51,13 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await User.findOne({ username, password });
+        const user = await User.findOne({ username});
         if (!user) return res.status(404).json({ error: 'Invalid credentials' });
+
+        const isMatch = await checkPassword(password, user.password);
+
+        if(!isMatch) return res.status(401).json({error: 'Invaild credentials'});
+
         res.status(200).json({ message: 'Login successful', user });
     } catch (err) {
         res.status(500).json({ error: 'Error logging in', details: err.message });
