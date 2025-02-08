@@ -49,7 +49,7 @@ const Admin = () => {
       setMessageColor("green");
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 500);
     })
     .catch(err => {
       console.log(err);
@@ -181,7 +181,7 @@ const Admin = () => {
           {userToEdit && (<div className='edit-user'>
             <h3>edit user</h3>
             <p>usermame: {userToEdit.username}</p>
-            <p>usermame: {userToEdit.password}</p>
+            <p>password: {userToEdit.password}</p>
             <p>admin status: {`${userToEdit.isAdmin}`}</p>
             <form onSubmit={ e => editUser(e)}>
               <div>
