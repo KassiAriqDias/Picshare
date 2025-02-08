@@ -2,6 +2,8 @@ const User = require('../models/user');
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'my_jwt_key'
 
 async function hashPassword(password){
     try{
@@ -58,11 +60,28 @@ exports.loginUser = async (req, res) => {
 
         if(!isMatch) return res.status(401).json({error: 'Invaild credentials'});
 
-        res.status(200).json({ message: 'Login successful', user });
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+
+        res.status(200).json({ message: 'Login successful', token });
     } catch (err) {
         res.status(500).json({ error: 'Error logging in', details: err.message });
     }
 };
+
+exports.userInfo = async (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1];
+    console.log(token);
+    if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+    try{
+        const decoded = jwt.verify(token, JWT_SECRET);
+        console.log(decoded);
+        const user = await User.findById(decoded.userId);
+        res.json(user);
+    } catch (err) {
+        res.status(401).json({ error: "Invalid token", details: err });
+    }
+}
 
 
 exports.generateName = async (req, res) => {

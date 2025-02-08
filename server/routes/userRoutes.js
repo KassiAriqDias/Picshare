@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, generateName, genearatePFP } = require('../controllers/userController');
+const { registerUser, loginUser, userInfo, generateName, genearatePFP } = require('../controllers/userController');
+
+
+//UserInfo route
+router.get('/user', userInfo)
 
 // Register route
 router.post('/register', registerUser);
