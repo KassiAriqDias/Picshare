@@ -33,7 +33,7 @@ const Login = (props) => {
           <p className='error-message' style={{color:props.messageColor}} >{props.message}</p>
           <input className="submit-btn" type="submit" value="Login" />
         </form>
-        <a href="./signup">Don't have an account?</a>
+        <a href="/#/registration/signup">Don't have an account?</a>
       </>
     );
   } else {

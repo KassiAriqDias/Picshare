@@ -48,7 +48,7 @@ const Admin = () => {
       setErrorMessage(data.message);
       setMessageColor("green");
       setTimeout(() => {
-        window.location.href = "/admin";
+        window.location.reload();
       }, 1000);
     })
     .catch(err => {
@@ -85,7 +85,7 @@ const Admin = () => {
       setErrorMessage(data.message);
       setMessageColor("green");
       setTimeout(() => {
-        window.location.href = "/admin";
+        window.location.reload();
       }, 500);
     })
     .catch(error => {
@@ -136,7 +136,7 @@ const Admin = () => {
     .then(data => {
         setErrorMessage(data.message);
         setMessageColor("green");
-        setTimeout(() => window.location.href = "/admin", 100);
+        setTimeout(() => window.location.reload(), 100);
     })
     .catch(err => {
         setErrorMessage(err.message);

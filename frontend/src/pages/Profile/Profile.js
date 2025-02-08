@@ -51,7 +51,7 @@ const Profile = () => {
         .then(data => {
             setErrorMessage(data.message);
             setMessageColor("green");
-            setTimeout(() => window.location.href = "/profile", 500);
+            setTimeout(() => window.location.reload(), 500);
         })
         .catch(err => {
             setErrorMessage(err.message);
