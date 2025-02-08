@@ -64,7 +64,7 @@ function Registeration() {
       setMessageColor("green");
       if (endpoint === 'login') {
         localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", JSON.stringify(data.token));
         setTimeout(() => window.location.href = "/", 1000);
       } else {
         
