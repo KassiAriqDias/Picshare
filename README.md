@@ -11,7 +11,7 @@ PicShare is a modern social media application inspired by Instagram. It empowers
   - Admin dashboard to monitor user sign-in history.
 
 - **Announcements Feature**
-  - Admin users can post announcements or updates directly to the main page.
+  - Admins can create, delete and update announcements.
   - Announcements support both English and Russian languages.
 
 - **Dynamic Content Integration**
