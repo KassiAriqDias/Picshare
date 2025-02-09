@@ -90,8 +90,9 @@ Ensure the following tools are installed:
    - **Frontend:**
      ```bash
      cd frontend
-     npm install
+     npm install --legacy-peer-deps
      ```
+    Dont forget to add ```--legacy-peer-deps```. Otherwise there might be error.
    - **Backend:**
      ```bash
      cd server
