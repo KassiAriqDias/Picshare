@@ -3,7 +3,7 @@ import './Home.css'
 import Header from '../../components/Header/Header'
 import Post from '../../components/Post/Post'
 import Announcement from '../../components/Announcement/Announcement'
-//import News from '../../components/News/News'
+import News from '../../components/News/News'
 import Quotes from '../../components/Quotes/Quotes'
 import Footer from '../../components/Footer/Footer'
 import dummyPost from '../../dummy_data/post.json'
@@ -37,7 +37,7 @@ const Home = () => {
           {announcements.map( announcement => {
             return <Announcement key={announcement._id} images={announcement.images} title_en={announcement.title_en} description_en={announcement.description_en}/>
           })}
-          {/*<News />*/} 
+          <News />
           <Quotes/>
           {dummyPost.map( post => {
             return <Post key={post.id} profilePic={post.profile_pic} username={post.username} post={post.post}/>
