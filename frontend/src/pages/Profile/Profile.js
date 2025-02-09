@@ -14,10 +14,16 @@ const Profile = () => {
         createdAt: ""
     });
 
+    const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
     const [messageColor, setMessageColor] = useState("");
     const [editMode, setEditMode] = useState(false);
     const [pfpUrl, setPfpUrl] = useState("https://api.dicebear.com/9.x/notionists-neutral/svg?seed=Avery&eyes=variant04&lips=variant24,variant19");
+
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 500)
+
+    }, [])
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -103,38 +109,51 @@ const Profile = () => {
         
     }
     
-  return (
-    <div>
-        {/* {console.log(userInfo)} */}
-        <Header />
-        <div className='profile-page'>
-            <h3>Account Info</h3>
-            
-            <div className='user-info'>
-                <div className='user-info-pfp'>
-                    <img src={userInfo.profilePicture} alt="Profile" />
-                    <button onClick={()=> setEditMode(true)}>Edit profile picture</button>
-                </div>
-                <ul className='user-info-list'>
-                    <li>Username: <span>{userInfo.username}</span></li>
-                    <li>Account created: <span>{userInfo.createdAt.split("T")[0]}</span></li>
-                </ul>
-            </div>
 
-            {editMode && (<div className='edit-pfp'>
-                <p>choose new profile picture</p>
-                <img className='pfp' src={pfpUrl} alt="Profile" />
-                <div>
-                    <button href='#' onClick={toggleNextPfp}>next</button>
-                    <button href='#' onClick={savePfp}>save</button>
+    if(loading){
+        return(
+            <div>
+                <Header />
+                <div className='profile-page'>
+                    <p>Loading...</p>
                 </div>
-        
                 
-            </div>)}  
-            <p style={{color: messageColor}}>{errorMessage}</p>
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            {/* {console.log(userInfo)} */}
+            <Header />
+            <div className='profile-page'>
+                <h3>Account Info</h3>
+                
+                <div className='user-info'>
+                    <div className='user-info-pfp'>
+                        <img src={userInfo.profilePicture} alt="Profile" />
+                        <button onClick={()=> setEditMode(true)}>Edit profile picture</button>
+                    </div>
+                    <ul className='user-info-list'>
+                        <li>Username: <span>{userInfo.username}</span></li>
+                        <li>Account created: <span>{userInfo.createdAt.split("T")[0]}</span></li>
+                    </ul>
+                </div>
+
+                {editMode && (<div className='edit-pfp'>
+                    <p>choose new profile picture</p>
+                    <img className='pfp' src={pfpUrl} alt="Profile" />
+                    <div>
+                        <button href='#' onClick={toggleNextPfp}>next</button>
+                        <button href='#' onClick={savePfp}>save</button>
+                    </div>
+            
+                    
+                </div>)}  
+                <p style={{color: messageColor}}>{errorMessage}</p>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Profile

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import serverUrl from '../../serverUrl.json'
 
 const Admin = () => {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [usersList, setUsersList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,6 +43,8 @@ const Admin = () => {
   };
 
   fetchUserInfo(setUser);
+  setTimeout(() => setLoading(false), 500)
+  
   }, [])
 
   const getUsersList = () => {
@@ -181,6 +184,14 @@ const Admin = () => {
   useEffect(() => {
     getUsersList();
   }, [])
+
+  if(loading){
+    return(
+      <div className='admin-page'>
+        <p>loading...</p>
+      </div>
+    )
+  }
 
 
 
