@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, generateName, genearatePFP } = require('../controllers/userController');
+const authenticateUser = require("../middleware/authMiddleware");
+const { registerUser, loginUser, userInfo, generateName, genearatePFP } = require('../controllers/userController');
+
+
+//UserInfo route
+router.get('/user', authenticateUser, userInfo)
 
 // Register route
 router.post('/register', registerUser);

@@ -1,0 +1,93 @@
+.announcement{
+    width: 50%;
+    min-width: 350px;
+    max-width: 500px;
+    background-color: #111;
+    border-radius: 5px;
+    line-height: 0;
+    margin-top: 10px;
+}
+
+.announcement-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 0.1em solid gray;
+
+}
+
+.announcement h2{
+    padding: 10px;
+}
+
+
+.announcement-body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-height: 620px;
+}
+
+.announcement-body img{
+    width: 100%;
+    object-fit: contain;
+}
+
+
+.announcement-footer{
+    align-items: center;
+    line-height: 20px;
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 0.1em solid gray;
+
+}
+
+.announcement-actions{
+    font-size: 1.3em;
+    margin-right: 8px;
+}
+
+.carusel{
+    position: absolute;
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6em;
+    
+}
+
+.carusel *{
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.carusel *:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.carusel *:active{
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+@media only screen and (max-width: 500px) {
+    .announcement{
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+    .announcement-actions{
+        font-size: 1.6em;
+    }
+}

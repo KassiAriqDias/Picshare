@@ -10,8 +10,7 @@ const Header = props => {
   }
 
   const onLogout = () => {
-    localStorage.removeItem("isLoggedIn")
-    localStorage.removeItem("user")
+    localStorage.removeItem("token")
   }
 
   return (
