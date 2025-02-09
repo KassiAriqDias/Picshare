@@ -14,7 +14,6 @@
 
 form{
     text-align: center;
-    min-width: 390px;
 }
 
 form div{
@@ -42,6 +41,7 @@ form label{
 .page-title{
     width: 200px;
     margin: auto;
+    text-align: center;
 }
 
 .admin-info{
@@ -140,3 +140,44 @@ form label{
 }
 
 
+#description{
+    background-color: #555;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 1em;
+}
+
+.create-item #title{
+    width: 100%;
+}
+
+.create-item input, textarea{
+    margin-top:20px;
+}
+
+#imageUpload{
+    font-size: 1em;
+}
+
+@media only screen and (max-width:500px) {
+    .admin-page p, .admin-page input{
+        font-size: 0.8em !important;
+    }
+
+    .admin-page form div {
+        width: 300px;
+    }
+    .admin-page form input {
+        width: 200px;
+    }
+    
+}
+
+@media only screen and (max-width:450px) {
+    .admin-page p{
+        font-size: 0.6em !important;
+    }
+
+    
+}

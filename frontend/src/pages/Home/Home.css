@@ -1,6 +1,15 @@
 .home-page{
-    padding-top: 62px;
+    padding-top: 59px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media only screen and (max-width:500px) {
+    .home-page{
+        padding-top: 56px;
+    }
+    .home p, .home a{
+        font-size: 0.8em !important;
+    }
 }

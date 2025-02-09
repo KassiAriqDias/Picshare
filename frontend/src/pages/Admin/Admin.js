@@ -258,6 +258,19 @@ const Admin = () => {
           </div>
   
         </div>
+        <div className='workspace'>
+          <h2>Announcements & Updates</h2>
+          <div className='create-item'>
+            <form>
+              <input type='text' name="title" id="title" placeholder='Title' required />
+              <textarea name='description' id='description'  rows="10" placeholder='Description' /><br/>
+              <label for="imageUpload">Upload an image:</label>
+              <input type="file" id="imageUpload" name="image" accept="image/*" /><br/>
+              <input className="submit-btn" type='submit' value="Create" />
+            </form> 
+          </div>
+  
+        </div>
       </div>
     )
   }
