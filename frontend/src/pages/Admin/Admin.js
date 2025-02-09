@@ -7,9 +7,11 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [usersList, setUsersList] = useState([]);
+  const [itemList, setItemsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [messageColor, setMessageColor] = useState("");
   const [userToEdit, setUserToEdit] = useState(null);
+  const [itemToEdit, setItemToEdit] = useState(null);
 
   useEffect(()=> {
     const fetchUserInfo = async setUserInfo => {
@@ -44,6 +46,9 @@ const Admin = () => {
 
   fetchUserInfo(setUser);
   setTimeout(() => setLoading(false), 500)
+
+  getUsersList();
+  getItemsList();
   
   }, [])
 
@@ -181,9 +186,142 @@ const Admin = () => {
     })
   } 
 
-  useEffect(() => {
-    getUsersList();
-  }, [])
+  const createItem = async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData();
+
+    const title_en = form.elements.title_en.value;
+    const description_en = form.elements.description_en.value;
+    const images = form.elements.images.files;
+
+    formData.append("title_en", title_en);
+    formData.append("description_en", description_en);
+
+    if (images.length !== 3) {
+        alert("Please select exactly 3 images.");
+        return;
+    }
+
+    for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]); 
+    }
+
+    try {
+        const response = await fetch(`${serverUrl.url}/api/items`, {
+            method: "POST",
+            body: formData,
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error);
+        }
+
+        setErrorMessage("Item created successfully!");
+        setMessageColor("green");
+        setTimeout(() => window.location.reload(), 500);
+    } catch (error) {
+        setErrorMessage(error.message);
+        setMessageColor("red");
+    }
+  };
+
+  const getItemsList = () => {
+    fetch(`${serverUrl.url}/api/items`)
+    .then(response => {
+      if(!response.ok){
+        return response.json().then(data => { throw new Error(data.error)});
+      }
+      return response.json()
+    })
+    .then(data => {
+      setItemsList(data);
+      
+    })
+    .catch(err => {
+      console.log(err);
+      setErrorMessage(err.message);
+      setMessageColor("red");
+    })
+  }
+
+  const getItem = async id => {
+    try{
+      const response = await fetch(`${serverUrl.url}/api/items/${id}`)
+      if(!response.ok){
+          return response.json().then(data => {throw new Error(data.error)});
+      }
+      const data = await response.json();
+      setItemToEdit(data);
+    }
+    catch(err){
+      setErrorMessage(err.message);
+      setMessageColor("red");
+      console.log(err.message);
+    }
+  }
+
+  const editItem = async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const title_en = form.elements.title_en.value;
+    const description_en = form.elements.description_en.value;
+
+    try {
+        const response = await fetch(`${serverUrl.url}/api/items/${itemToEdit._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title_en, description_en }), 
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error);
+        }
+
+        setErrorMessage("Item updated successfully!");
+        setMessageColor("green");
+        setTimeout(() => window.location.reload(), 500);
+    } catch (error) {
+        setErrorMessage(error.message);
+        setMessageColor("red");
+    }
+  };
+
+  const deleteItem = id => {
+    fetch(`${serverUrl.url}/api/items/${id}`, {
+      method:"DELETE",
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if(!response.ok){
+        return response.json().then(data => { throw new Error(data.error)});
+      }
+      return response.json()
+    })
+    .then(data => {
+      console.log(data.message)
+      setErrorMessage(data.message);
+      setMessageColor("green");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    })
+    .catch(err => {
+      console.log(err);
+      setErrorMessage(err.message);
+      setMessageColor("red");
+    })
+    
+  }
+  
 
   if(loading){
     return(
@@ -193,7 +331,7 @@ const Admin = () => {
     )
   }
 
-
+ 
 
   if(user.isAdmin){
     return (
@@ -260,16 +398,43 @@ const Admin = () => {
         </div>
         <div className='workspace'>
           <h2>Announcements & Updates</h2>
+          {itemList.map( item => {
+              return (<div className='row' key={item._id}>
+                <div className='id'>
+                  <p>{item._id}</p>
+                </div>
+                <div className='username'>
+                  <p>{item.title_en}</p>
+                </div>
+                <div className='action'>
+                  <button className='action-btn action-edit' onClick={(e) => getItem(item._id)}>edit</button>
+                  <button onClick={() => deleteItem(item._id)} className='action-btn action-delete'>delete</button>
+                </div>
+              </div>)
+          })}
+
+          {itemToEdit && (<div className='edit-user'>
+            <div className='create-item'>
+            <h3>edit item</h3>
+            <p>id: {itemToEdit._id}</p>
+            <p>title: {itemToEdit.title_en}</p>
+            <form onSubmit={editItem}>
+              <input type='text' name="title_en" id="title" placeholder='Title' required />
+              <textarea name='description_en' id='description'  rows="10" placeholder='Description' required/><br/>
+              <input className="submit-btn" type='submit' value="Edit" />
+            </form> 
+          </div>
+          </div>)}
           <div className='create-item'>
-            <form>
-              <input type='text' name="title" id="title" placeholder='Title' required />
-              <textarea name='description' id='description'  rows="10" placeholder='Description' /><br/>
-              <label for="imageUpload">Upload an image:</label>
-              <input type="file" id="imageUpload" name="image" accept="image/*" /><br/>
+            <h3>create item</h3>
+            <form onSubmit={createItem}>
+              <input type='text' name="title_en" id="title" placeholder='Title' required />
+              <textarea name='description_en' id='description'  rows="10" placeholder='Description' required/><br/>
+              <label htmlFor="imageUpload">Upload 3 images:</label>
+              <input type="file" id="imageUpload" name="images" accept="image/*" multiple required/><br/>
               <input className="submit-btn" type='submit' value="Create" />
             </form> 
           </div>
-  
         </div>
       </div>
     )

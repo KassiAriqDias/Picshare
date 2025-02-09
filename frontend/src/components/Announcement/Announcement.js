@@ -1,29 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Announcement.css'
 
 const Announcement = (promp) => {
+  const [currentIndex ,setCurrentIndex] = useState(0);
+  const images = promp.images;
 
-    const dummy_image = ['../../']
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+      setCurrentIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+  };
+
     return (
         <div className='announcement'>
             <div className='announcement-header'>
-               <h2>Announcement & Udate</h2>          
+               <h2>Announcements & Updates</h2>          
             </div>
             <div className='announcement-body' >
-              <img src='https://i.pinimg.com/736x/dc/7d/48/dc7d4866cfcc0cf1f32123d822113230.jpg' alt='announcement'/>
+              <img src={promp.images[currentIndex].url} alt='announcement'/>
               <div className='carusel'>
-                <i className='bx bxs-left-arrow'></i>
-                <i className='bx bxs-right-arrow' ></i>
+                <i className='bx bxs-left-arrow' onClick={handlePrev}></i>
+                <i className='bx bxs-right-arrow' onClick={handleNext} ></i>
               </div>
             </div>
             <div className='announcement-footer'>
                 <div>
-                <h4>Now Available in More Languages!</h4><br/>
-                <p>We've added support for Russian! Go to settings to switch your language.</p>
+                <h4>{promp.title_en}</h4><br/>
+                <p>{promp.description_en}</p>
                 </div>                
             </div>
         </div>
       )
 }
 
-export default Announcement
+export default Announcement 

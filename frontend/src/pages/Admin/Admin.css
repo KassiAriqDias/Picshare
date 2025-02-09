@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.admin-page .submit-btn{
+    cursor: pointer;
+}
+
 .admin-login-box{
     display: flex;
     flex-direction: column;
@@ -149,7 +153,12 @@ form label{
 }
 
 .create-item #title{
+    margin-top: 10px;
     width: 100%;
+}
+
+.create-item{
+    margin-top: 20px;
 }
 
 .create-item input, textarea{
