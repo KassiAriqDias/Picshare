@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.home-page > div{
+    margin-bottom: 10px;
+}
+
 @media only screen and (max-width:500px) {
     .home-page{
         padding-top: 56px;

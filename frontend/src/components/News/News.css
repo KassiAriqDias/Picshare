@@ -1,4 +1,4 @@
-.announcement{
+.news{
     width: 50%;
     min-width: 350px;
     max-width: 500px;
@@ -8,7 +8,7 @@
     margin-top: 10px;
 }
 
-.announcement-header{
+.news-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,25 +19,23 @@
 
 }
 
-.announcement h2{
+.news h2{
     padding: 10px;
 }
-
-
-.announcement-body{
+.news-body{
     position: relative;
     display: flex;
     justify-content: center;
     max-height: 620px;
 }
 
-.announcement-body img{
+.news-body img{
     width: 100%;
     object-fit: contain;
 }
 
 
-.announcement-footer{
+.news-footer{
     align-items: center;
     line-height: 20px;
     padding: 15px;
@@ -47,45 +45,10 @@
 
 }
 
-.announcement-actions{
-    font-size: 1.3em;
-    margin-right: 8px;
-}
-
-.carusel{
-    position: absolute;
-    display: block;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.6em;
-}
-
-.carusel *{
-    color: rgba(255, 255, 255, 0.2);
-}
-
-.carusel *:hover{
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.carusel *:active{
-    color: rgba(255, 255, 255, 0.7);
-}
-
-
-
 @media only screen and (max-width: 500px) {
-    .announcement{
+    .news{
         width: 100%;
         border-radius: 0;
         margin: 0;
-    }
-    .announcement-actions{
-        font-size: 1.6em;
     }
 }
