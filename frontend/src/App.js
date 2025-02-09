@@ -5,7 +5,8 @@ import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Admin from "./pages/Admin/Admin"
 
 function App() {
-  const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+  const token = JSON.parse(localStorage.getItem('token'));
+  let isLoggedIn = token ? true : false;
 
   return (
     <HashRouter>

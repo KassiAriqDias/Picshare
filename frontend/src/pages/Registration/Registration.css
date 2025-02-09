@@ -7,6 +7,10 @@
     justify-content: center;
 }
 
+a{
+    cursor: pointer;
+}
+
 .register-box a{
     color: #555;
     margin: 10px;
@@ -46,3 +50,19 @@
     margin: 0 !important;
     display: block;
 }
+
+
+
+@media only screen and (max-width:500px) {
+    .register-box form input{
+        width: 85%;
+
+    }
+    .register-box form div{
+        margin-left: 0;
+        margin-right: 0;
+
+    }
+    
+}
+
