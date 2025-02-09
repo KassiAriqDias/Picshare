@@ -37,7 +37,7 @@ PicShare is a modern social media application inspired by Instagram. It empowers
 ## 📂 Folder Structure
 
 ```
-📦 project-name
+📦 Picshare
 ├── 📂 frontend
 │   ├── 📂 node_modules
 │   ├── 📂 public
@@ -116,7 +116,7 @@ Ensure the following tools are installed:
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/your-username/picshare.git
-   cd PicShareDesktop
+   cd PicShare
    ```
 
 2. **Install Dependencies**
