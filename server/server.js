@@ -21,6 +21,16 @@ app.get("/", (req, res) => {
   res.status(200).json("This is the server side!");
 });
 
+app.get('/quote', async (req, res) => {
+  try {
+      const response = await fetch('https://favqs.com/api/qotd');
+      const data = await response.json();
+      res.json(data);
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch quote' });
+  }
+});
+
 // Error handler middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
