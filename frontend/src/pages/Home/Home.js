@@ -35,7 +35,7 @@ const Home = () => {
         <Header/>
         <div className="home-page">
           {announcements.map( announcement => {
-            return <Announcement key={announcement._id} images={announcement.images} title_en={announcement.title_en} description_en={announcement.description_en}/>
+            return <Announcement key={announcement._id} images={announcement.images} title_en={announcement.title_en} title_ru={announcement.title_ru} description_en={announcement.description_en} description_ru={announcement.description_ru} />
           })}
           <News />
           <Quotes/>

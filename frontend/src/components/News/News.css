@@ -37,12 +37,19 @@
 
 .news-footer{
     align-items: center;
-    line-height: 20px;
     padding: 15px;
     padding-left: 10px;
     padding-right: 10px;
     border-top: 0.1em solid gray;
 
+}
+
+.news-footer div{
+    padding: 10px;
+}
+
+.news-footer div *{
+    line-height: 20px;
 }
 
 @media only screen and (max-width: 500px) {

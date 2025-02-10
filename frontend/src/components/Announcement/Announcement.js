@@ -30,10 +30,14 @@ const Announcement = (promp) => {
               </div>
             </div>
             <div className='announcement-footer'>
-                <div>
-                <h4>{promp.title_en}</h4><br/>
-                <p>{promp.description_en}</p>
-                </div>                
+                  <div>
+                  <h4>{promp.title_en}</h4><br/>
+                  <h4 className='ru'>{promp.title_ru}</h4><br/>
+                  </div>
+                  <div>
+                  <p>{promp.description_en}</p><br />
+                  <p className='ru'>{promp.description_ru}</p>
+                  </div>              
             </div>
         </div>
       )
